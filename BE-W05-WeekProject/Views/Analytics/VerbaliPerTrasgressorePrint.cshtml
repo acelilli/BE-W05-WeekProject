@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BE_W05_WeekProject.Models.VerbaliPerTrasgressore>
+
+@{
+    ViewBag.Title = "VerbaliPerTrasgressorePrint";
+}
+
+<h2>VerbaliPerTrasgressorePrint</h2>
+
+<p>
+    @Html.ActionLink("Indietro", "Index")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdAnagrafica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotaleVerbali)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdAnagrafica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cognome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotaleVerbali)
+        </td>
+    </tr>
+}
+
+</table>

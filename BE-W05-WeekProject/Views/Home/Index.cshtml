@@ -7,11 +7,11 @@
 <h2>Archivio verbali</h2>
 
 <div>
-    <button class="btn btn-primary my-1" onclick="window.location.href='@Url.Action("ArchivioAnagrafica", "Home")'">Archivio Anagrafica</button>
-    <button class="btn btn-primary my-1" onclick="window.location.href='@Url.Action("ArchivioViolazioni", "Home")'">Archivio Violazioni</button>
-    <button class="btn btn-primary my-1" onclick="window.location.href='@Url.Action("NuovoVerbale", "Verbali")'">Nuovo Verbale</button>
+    <button class="btn btn-primary my-2" onclick="window.location.href='@Url.Action("ArchivioAnagrafica", "Home")'">Archivio Anagrafica</button>
+    <button class="btn btn-primary my-2" onclick="window.location.href='@Url.Action("ArchivioViolazioni", "Home")'">Archivio Violazioni</button>
+    <button class="btn btn-primary my-2" onclick="window.location.href='@Url.Action("NuovoVerbale", "Verbali")'">Nuovo Verbale</button>
 </div>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.IdVerbale)

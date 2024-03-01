@@ -128,6 +128,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Anagrafica.cs" />
+    <Compile Include="Models\PuntiPerTrasgressore.cs" />
+    <Compile Include="Models\VerbaliPerTrasgressore.cs" />
     <Compile Include="Models\Verbali.cs" />
     <Compile Include="Models\Violazioni.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -187,10 +189,12 @@
     <Content Include="Views\Home\ArchivioAnagrafica.cshtml" />
     <Content Include="Views\Home\ArchivioViolazioni.cshtml" />
     <Content Include="Views\Anagrafica\NuovaAnagrafica.cshtml" />
+    <Content Include="Views\Analytics\Index.cshtml" />
+    <Content Include="Views\Analytics\VerbaliPerTrasgressorePrint.cshtml" />
+    <Content Include="Views\Analytics\PuntiPerTrasgressorePrint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Analytics\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
