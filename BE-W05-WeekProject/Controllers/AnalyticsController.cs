@@ -66,7 +66,7 @@ namespace BE_W05_WeekProject.Controllers
 
             return View(verbaliPerTrasgressore);
         }
-        ////Visualizzare tabella Punti decurtati per trasgressore:
+        ////Visualizzare tabella PUNTI DECURTATI PER TRASGRESSORE:
         /// 1. Classe per rappresentare i punti decurtati  per trasgressore -> in models
         /// 2. Metodo per visualizzare i verbali raggruppati per trasgressore (id + nome e cognome)
         /// LEFT JOIN delle tabelle tramite ID ANAGRAFICA
@@ -120,7 +120,7 @@ namespace BE_W05_WeekProject.Controllers
 
             return View(puntiPerTrasgressore);
         }
-        // Visualizzare Nome, Cognome, decurtamento punti e importo per le violazioni che superano i 10 pt:
+        // Visualizzare Nome, Cognome, decurtamento punti e importo per le violazioni che superano i 10 PUNTI:
         /// 1. Classe per costuire il modello x le trasgressioni con 10+ punti decurtati -> in models
         /// 2. Metodo per visualizzare i nominativi, data, importo e pt x le trasgressioni dove i punti 10+
         public ActionResult AnagraficaDieci()
@@ -180,7 +180,7 @@ namespace BE_W05_WeekProject.Controllers
             return View(anagraficheDieci);
         }
         ////
-        //// Visualizzare le violazioni cui importo è maggiore di 400 euro
+        //// Visualizzare le violazioni cui IMPORTO è maggiore di 400 EURO
         /// 1. Classe per costuire il modello x le trasgressioni con importi superiori a 400 -> in models
         /// 2. Metodo per visualizzare i nominativi e le trasgressioni dove l'importo è +400
         public ActionResult QuattrocentoPrint()

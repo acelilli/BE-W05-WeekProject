@@ -11,29 +11,29 @@ namespace BE_W05_WeekProject.Controllers
 {
     public class AnagraficaController : Controller
     {
-        // GET: Anagrafica STAMPA ANAGRAFICA INDEX
+        ////GET: Anagrafica
         public ActionResult Index()
         {
             return View();
         }
-        /// OPERAZIONI RELATIVE ALL'ANAGRAFICA ///
-        /// ////// METODI PER CREARE IL FORM DA COMPILARE PER CREARE UNA NUOVA ANAGRAFICA
-        /// 
+        //// NEL CONTROLLER ANAGRAFICA METTO SOLO LE OPERAZIONI RELATIVE AI VERBALI /// 
+        ///
+        ///
+        //// METODI PER CREARE IL FORM DA COMPILARE PER AGGIUNGERE UN NUOVO TRASGRESSORE
+        //// GET 
         [HttpGet]
         public ActionResult NuovaAnagrafica()
         {
             return View();
         }
-
+        //// POST -> Per mandare i dati al DB
         [HttpPost]
         public ActionResult NuovaAnagrafica(Anagrafica anagrafica)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["PoliziaMinicipale"].ConnectionString;
-            SqlConnection   conn = new SqlConnection(connectionString);
+            SqlConnection conn = new SqlConnection(connectionString);
             try
             {
-                // Salvataggio dei dati nel database senza verificare la validità del modello
-
                 conn.Open();
                 string query = @"INSERT INTO ANAGRAFICA (Nome, Cognome, Indirizzo, Citta, CAP, CF)
                 VALUES (@Nome, @Cognome, @Indirizzo, @Citta, @CAP, @CF)";
@@ -46,6 +46,7 @@ namespace BE_W05_WeekProject.Controllers
                     command.Parameters.AddWithValue("@CAP", anagrafica.CAP);
                     command.Parameters.AddWithValue("@CF", anagrafica.CF);
 
+                    // Esecuzione comando = inserimento dell'anagrafica nel database
                     command.ExecuteNonQuery();
                 }
 
@@ -53,8 +54,7 @@ namespace BE_W05_WeekProject.Controllers
 
             }
             catch (Exception ex)
-            {
-                ModelState.AddModelError("", "Si è verificato un errore durante il salvataggio dell'anagrafica.");
+            {                
                 System.Diagnostics.Debug.WriteLine("Errore:" + ex.Message);
                 return View(anagrafica);
             }

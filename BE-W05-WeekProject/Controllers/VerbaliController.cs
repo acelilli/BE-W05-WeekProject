@@ -11,16 +11,16 @@ namespace BE_W05_WeekProject.Controllers
 {
     public class VerbaliController : Controller
     {
-        // GET: Verbali
+        ////GET: Verbali
         public ActionResult Index()
         {
             return View();
         }
-        /// NEL CONTROLLER VERBALI METTO LE OPERAZIONI CRUD RELATIVE AI VERBALI /// 
+        //// NEL CONTROLLER VERBALI METTO SOLO LE OPERAZIONI RELATIVE AI VERBALI /// 
         ///
         ///
-        /// METODI PER CREARE IL FORM DA COMPILARE PER CREARE UN NUOVO VERBALE
-        /// 
+        //// METODI PER CREARE IL FORM DA COMPILARE PER CREARE UN NUOVO VERBALE
+        //// GET -> Prendo le liste per fare il dropdown per scegliere le anagrafiche e per scegliere le violazioni
         [HttpGet]
         public ActionResult NuovoVerbale()
         {
@@ -39,6 +39,7 @@ namespace BE_W05_WeekProject.Controllers
             // Passaggio del modello alla vista
             return View(model);
         }
+        //// POST -> Per mandare i dati al DB
         [HttpPost]
         public ActionResult NuovoVerbale(Verbali verbale)
         {
@@ -53,7 +54,7 @@ namespace BE_W05_WeekProject.Controllers
                 verbale.AnagraficaItems = anagraficaList;
                 verbale.ViolazioneItems = violazioniList;
 
-                // Ritorno della vista con il modello per mostrare gli errori
+                // Ritorno della vista con il modello
                 return View(verbale);
             }
 
@@ -85,8 +86,7 @@ namespace BE_W05_WeekProject.Controllers
                     TempData["SuccessMessageVerbale"] = "Verbale inserito con successo!";
                 }
                 catch (Exception ex)
-                {
-                    ModelState.AddModelError("", "Si è verificato un errore durante il salvataggio del verbale.");
+                {                    
                     System.Diagnostics.Debug.WriteLine("Errore:" + ex.Message);
                     return View(verbale);
                 }
@@ -103,7 +103,7 @@ namespace BE_W05_WeekProject.Controllers
         // 1. ANAGRAFICA
         // 2. VIOLAZIONI
         ///
-        // Lista delle opzioni per l'anagrafica
+        // 1. Metodo per creare la lista delle opzioni per il menu dropdown  -> Ritorna la lista delle anagrafiche
         private List<SelectListItem> GetAnagraficaList()
         {
             var anagraficaList = new List<SelectListItem>();
@@ -142,7 +142,7 @@ namespace BE_W05_WeekProject.Controllers
             return anagraficaList;
         }
 
-        // Lista delle violazioni
+        //2. Metodo per creare la lista delle violazioni per il menù dropdown -> Ritorna la lista delle violazioni
         private List<SelectListItem> GetViolazioniList()
         {
             var violazioniList = new List<SelectListItem>();

@@ -51,7 +51,8 @@ namespace BE_W05_WeekProject.Controllers
 
             return View(verbaliList);
         }
-
+        /// 
+        //// Metodo per stampare l'archivio dei dati anagrafici dei trasgressori -> ritorna la lista
         public ActionResult ArchivioAnagrafica()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["PoliziaMinicipale"].ConnectionString;
@@ -90,6 +91,8 @@ namespace BE_W05_WeekProject.Controllers
             return View(anagraficaList);
         }
 
+        /// 
+        //// Metodo per stampare l'archivio delle violazioni -> ritorna la lista
         public ActionResult ArchivioViolazioni()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["PoliziaMinicipale"].ConnectionString;
