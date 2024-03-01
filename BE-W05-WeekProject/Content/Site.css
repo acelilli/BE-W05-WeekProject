@@ -18,8 +18,9 @@ select,
 textarea {
     max-width: 280px;
 }
+/*//////////////////////////////////////////////////////////////////////////////*/
 /* CUSTOM */
-.table-striped td{
+.table-striped tr{
     padding: 5px;
     text-align: center;
 }

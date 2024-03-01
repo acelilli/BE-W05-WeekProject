@@ -130,6 +130,7 @@
     <Compile Include="Models\Anagrafica.cs" />
     <Compile Include="Models\AnagraficaDieci.cs" />
     <Compile Include="Models\PuntiPerTrasgressore.cs" />
+    <Compile Include="Models\Quattrocento.cs" />
     <Compile Include="Models\VerbaliPerTrasgressore.cs" />
     <Compile Include="Models\Verbali.cs" />
     <Compile Include="Models\Violazioni.cs" />
@@ -194,6 +195,7 @@
     <Content Include="Views\Analytics\VerbaliPerTrasgressorePrint.cshtml" />
     <Content Include="Views\Analytics\PuntiPerTrasgressorePrint.cshtml" />
     <Content Include="Views\Analytics\AnagraficaDieci.cshtml" />
+    <Content Include="Views\Analytics\QuattrocentoPrint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -14,11 +14,13 @@ namespace BE_W05_WeekProject.Controllers
     public class AnalyticsController : Controller
     {
         // GET: Analytics
+        
+        ////In index: Solo pulsanti che rimandano alle azioni
         public ActionResult Index()
         {
             return View();
         }
-        /// Verbali per trasgressore:
+        //// Visualizzare verbali per trasgressore:
         /// 1. Classe per rappresentare i dati dei verbali per trasgressore -> In models
         /// 2. Metodo per visualizzare i verbali raggruppati per trasgressore (id + nome e cognome)
         /// LEFT JOIN delle tabelle tramite ID ANAGRAFICA
@@ -64,7 +66,7 @@ namespace BE_W05_WeekProject.Controllers
 
             return View(verbaliPerTrasgressore);
         }
-        /// Punti decurtati per trasgressore:
+        ////Visualizzare tabella Punti decurtati per trasgressore:
         /// 1. Classe per rappresentare i punti decurtati  per trasgressore -> in models
         /// 2. Metodo per visualizzare i verbali raggruppati per trasgressore (id + nome e cognome)
         /// LEFT JOIN delle tabelle tramite ID ANAGRAFICA
@@ -119,7 +121,8 @@ namespace BE_W05_WeekProject.Controllers
             return View(puntiPerTrasgressore);
         }
         // Visualizzare Nome, Cognome, decurtamento punti e importo per le violazioni che superano i 10 pt:
-        //
+        /// 1. Classe per costuire il modello x le trasgressioni con 10+ punti decurtati -> in models
+        /// 2. Metodo per visualizzare i nominativi, data, importo e pt x le trasgressioni dove i punti 10+
         public ActionResult AnagraficaDieci()
         {
             List<AnagraficaDieci> anagraficheDieci = new List<AnagraficaDieci>();
@@ -131,10 +134,11 @@ namespace BE_W05_WeekProject.Controllers
             {
                 conn.Open();
                 string query = @"
-            SELECT A.Nome, A.Cognome, V.PuntiDecurtati, V.Importo, V.DataViolazione
-            FROM ANAGRAFICA A
-            INNER JOIN VERBALE V ON A.IdAnagrafica = V.IdAnagrafica
-            WHERE V.PuntiDecurtati > 10";
+                SELECT A.Nome, A.Cognome, V.PuntiDecurtati, V.Importo, V.DataViolazione
+                FROM ANAGRAFICA A
+                INNER JOIN VERBALE V ON A.IdAnagrafica = V.IdAnagrafica
+                WHERE V.PuntiDecurtati > 10
+                ORDER BY V.PuntiDecurtati DESC""";
 
                 SqlCommand command = new SqlCommand(query, conn);
                 SqlDataReader reader = command.ExecuteReader();
@@ -175,6 +179,65 @@ namespace BE_W05_WeekProject.Controllers
 
             return View(anagraficheDieci);
         }
+        ////
+        //// Visualizzare le violazioni cui importo è maggiore di 400 euro
+        /// 1. Classe per costuire il modello x le trasgressioni con importi superiori a 400 -> in models
+        /// 2. Metodo per visualizzare i nominativi e le trasgressioni dove l'importo è +400
+        public ActionResult QuattrocentoPrint()
+        {
+            List<Quattrocento> quattrocentoList = new List<Quattrocento>();
 
+            string connectionString = ConfigurationManager.ConnectionStrings["PoliziaMinicipale"].ConnectionString;
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            try
+            {
+                conn.Open();
+                string query = @"
+            SELECT V.IdVerbale, V.Importo, V.PuntiDecurtati, V.DataViolazione, VI.Descrizione, A.Nome, A.Cognome
+            FROM VERBALE V
+            INNER JOIN VIOLAZIONE VI ON V.IdViolazione = VI.IdViolazione
+            INNER JOIN ANAGRAFICA A ON V.IdAnagrafica = A.IdAnagrafica
+            WHERE V.Importo > 400
+            ORDER BY V.Importo DESC";
+
+                SqlCommand command = new SqlCommand(query, conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var idVerbale = Convert.ToInt32(reader["IdVerbale"]);
+                    var importo = Convert.ToDecimal(reader["Importo"]);
+                    var puntiDecurtati = Convert.ToInt32(reader["PuntiDecurtati"]);
+                    var dataViolazione = Convert.ToDateTime(reader["DataViolazione"]);
+                    var descrizione = reader["Descrizione"].ToString();
+                    var nome = reader["Nome"].ToString();
+                    var cognome = reader["Cognome"].ToString();
+
+                    quattrocentoList.Add(new Quattrocento
+                    {
+                        IdVerbale = idVerbale,
+                        Importo = importo,
+                        PuntiDecurtati = puntiDecurtati,
+                        DataViolazione = dataViolazione,
+                        Descrizione = descrizione,
+                        Nome = nome,
+                        Cognome = cognome
+                    });
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Errore:" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return View(quattrocentoList);
+        }
     }
 }
