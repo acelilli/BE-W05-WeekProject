@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Configuration;
 using BE_W05_WeekProject.Models;
+using System.Web.UI.WebControls;
 
 namespace BE_W05_WeekProject.Controllers
 {
@@ -116,6 +117,63 @@ namespace BE_W05_WeekProject.Controllers
             }
 
             return View(puntiPerTrasgressore);
+        }
+        // Visualizzare Nome, Cognome, decurtamento punti e importo per le violazioni che superano i 10 pt:
+        //
+        public ActionResult AnagraficaDieci()
+        {
+            List<AnagraficaDieci> anagraficheDieci = new List<AnagraficaDieci>();
+
+            // Connessione al database
+            string connectionString = ConfigurationManager.ConnectionStrings["PoliziaMinicipale"].ConnectionString;
+            SqlConnection conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                string query = @"
+            SELECT A.Nome, A.Cognome, V.PuntiDecurtati, V.Importo, V.DataViolazione
+            FROM ANAGRAFICA A
+            INNER JOIN VERBALE V ON A.IdAnagrafica = V.IdAnagrafica
+            WHERE V.PuntiDecurtati > 10";
+
+                SqlCommand command = new SqlCommand(query, conn);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var nome = reader["Nome"].ToString();
+                    var cognome = reader["Cognome"].ToString();
+                    var puntiDecurtati = Convert.ToInt32(reader["PuntiDecurtati"]);
+                    var importo = Convert.ToDecimal(reader["Importo"]);
+                    var dataViolazione = Convert.ToDateTime(reader["DataViolazione"]);
+
+                    anagraficheDieci.Add(new AnagraficaDieci
+                    {
+                        Nome = nome,
+                        Cognome = cognome,
+                        PuntiDecurtati = puntiDecurtati,
+                        Importo = importo,
+                        DataViolazione = dataViolazione
+                    });
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Errore:" + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            // Visto che al momento non ho violazioni con 10+ punti stampo un messaggio
+            if (anagraficheDieci.Count == 0)
+            {
+                ViewBag.Message = "Nessuna violazione con 10+ punti decurtati trovata.";
+            }
+
+            return View(anagraficheDieci);
         }
 
     }

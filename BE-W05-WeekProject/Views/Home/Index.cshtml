@@ -45,31 +45,31 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td style="padding: 5px; text-align: center;">
+        <td >
             @Html.DisplayFor(modelItem => item.IdVerbale)
         </td>
-        <td style="padding: 5px; text-align: center;">
+        <td>
             @Html.DisplayFor(modelItem => item.IdAnagrafica)
         </td>
-        <td style="padding: 5px; text-align: center;">
+        <td>
             @Html.DisplayFor(modelItem => item.IdViolazione)
         </td>
-        <td style="padding: 5px; text-align: center;">
+        <td>
             @Html.DisplayFor(modelItem => item.DataViolazione)
         </td>
-        <td style="padding: 5px; text-align: center;">
+        <td>
             @Html.DisplayFor(modelItem => item.IndirizzoViolazione)
         </td>
-        <td style="padding: 5px; text-align: center;">
+        <td>
             @Html.DisplayFor(modelItem => item.NominativoAgente)
         </td>
-        <td style="width: auto; padding: 5px; text-align: center;">
+        <td >
             @Html.DisplayFor(modelItem => item.DataTrascrizioneVerbale)
         </td>
-        <td style="width: auto; padding: 5px; text-align: center;">
+        <td >
             @Html.DisplayFor(modelItem => item.Importo)
         </td>
-        <td style="width: auto; padding: 5px; text-align: center;">
+        <td>
             @Html.DisplayFor(modelItem => item.PuntiDecurtati)
         </td>
         <!-- Non richiesto dalla traccia, se ho tempo lo faccio - 
