@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BE_W05_WeekProject.Models.Anagrafica>
+
+@{
+    ViewBag.Title = "Archivio Anagrafica";
+}
+
+<h2>Archivio Trasgressori</h2>
+
+<div>
+    <button class="btn btn-primary my-2" onclick="window.location.href='@Url.Action("Index", "Home")'">Archivio Verbali</button>
+    <button class="btn btn-primary my-2" onclick="window.location.href='@Url.Action("ArchivioViolazioni", "Home")'">Archivio Violazioni</button>
+    <button class="btn btn-primary my-2" onclick="window.location.href='@Url.Action("NuovaAnagrafica", "Anagrafica")'">Nuovo Trasgressore</button>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdAnagrafica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cognome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Indirizzo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Citta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CAP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CF)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdAnagrafica)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cognome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Indirizzo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Citta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CAP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CF)
+        </td>
+    </tr>
+}
+
+</table>

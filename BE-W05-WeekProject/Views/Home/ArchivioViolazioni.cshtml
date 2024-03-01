@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BE_W05_WeekProject.Models.Violazioni>
+
+@{
+    ViewBag.Title = "Archivio Violazioni";
+}
+
+<h2>Archivio violazioni</h2>
+
+<div>
+    <button class="btn btn-primary my-2" onclick="window.location.href='@Url.Action("Index", "Home")'">Archivio Verbali</button>
+    <button class="btn btn-primary my-2" onclick="window.location.href='@Url.Action("ArchivioAnagrafica", "Home")'">Archivio Anagrafica</button>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdViolazione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdViolazione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descrizione)
+        </td>
+    </tr>
+}
+
+</table>

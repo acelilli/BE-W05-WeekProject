@@ -1,0 +1,83 @@
+﻿@model IEnumerable<BE_W05_WeekProject.Models.Verbali>
+
+@{
+    ViewBag.Title = "Archivio";
+}
+
+<h2>Archivio verbali</h2>
+
+<div>
+    <button class="btn btn-primary my-1" onclick="window.location.href='@Url.Action("ArchivioAnagrafica", "Home")'">Archivio Anagrafica</button>
+    <button class="btn btn-primary my-1" onclick="window.location.href='@Url.Action("ArchivioViolazioni", "Home")'">Archivio Violazioni</button>
+    <button class="btn btn-primary my-1" onclick="window.location.href='@Url.Action("NuovoVerbale", "Verbali")'">Nuovo Verbale</button>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdVerbale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdAnagrafica)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdViolazione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataViolazione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IndirizzoViolazione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NominativoAgente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataTrascrizioneVerbale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Importo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PuntiDecurtati)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="padding: 5px; text-align: center;">
+            @Html.DisplayFor(modelItem => item.IdVerbale)
+        </td>
+        <td style="padding: 5px; text-align: center;">
+            @Html.DisplayFor(modelItem => item.IdAnagrafica)
+        </td>
+        <td style="padding: 5px; text-align: center;">
+            @Html.DisplayFor(modelItem => item.IdViolazione)
+        </td>
+        <td style="padding: 5px; text-align: center;">
+            @Html.DisplayFor(modelItem => item.DataViolazione)
+        </td>
+        <td style="padding: 5px; text-align: center;">
+            @Html.DisplayFor(modelItem => item.IndirizzoViolazione)
+        </td>
+        <td style="padding: 5px; text-align: center;">
+            @Html.DisplayFor(modelItem => item.NominativoAgente)
+        </td>
+        <td style="width: auto; padding: 5px; text-align: center;">
+            @Html.DisplayFor(modelItem => item.DataTrascrizioneVerbale)
+        </td>
+        <td style="width: auto; padding: 5px; text-align: center;">
+            @Html.DisplayFor(modelItem => item.Importo)
+        </td>
+        <td style="width: auto; padding: 5px; text-align: center;">
+            @Html.DisplayFor(modelItem => item.PuntiDecurtati)
+        </td>
+        <!-- Non richiesto dalla traccia, se ho tempo lo faccio - 
+            <td style="width: auto; padding: 5px; text-align: center;">
+        @Html.ActionLink("Dettagli", "Details", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Cancella", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>-->
+    </tr>
+}
+
+</table>
