@@ -88,7 +88,8 @@ namespace BE_W05_WeekProject.Controllers
                 FROM VERBALE
                 GROUP BY IdAnagrafica
                 ) AS V ON A.IdAnagrafica = V.IdAnagrafica
-                GROUP BY A.IdAnagrafica, A.Nome, A.Cognome;";
+                GROUP BY A.IdAnagrafica, A.Nome, A.Cognome
+                ORDER BY TotalePunti DESC";
 
 
                 SqlCommand command = new SqlCommand(query, conn);
